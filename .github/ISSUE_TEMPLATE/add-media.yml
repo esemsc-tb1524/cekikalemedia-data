@@ -17,11 +17,26 @@ body:
       description: Qui détient ce média ? Si c'est indirect, indiquez la chaîne (média, société, actionnaire).
     validations:
       required: true
+  - type: input
+    id: link_url
+    attributes:
+      label: Lien de redirection (« pour en savoir plus »)
+      description: >-
+        Page vers laquelle l'extension envoie l'internaute quand il clique sur la bannière.
+        Privilégiez un lien dont la fiabilité n'est pas contestable : la page Wikipédia du média
+        ou de son propriétaire, ou la page « qui sommes-nous » / mentions légales du média lui-même.
+        Évitez les blogs, réseaux sociaux, articles d'opinion ou sites partisans.
+        Si vous hésitez, laissez vide : un relecteur proposera un lien.
+      placeholder: "https://fr.wikipedia.org/wiki/…"
   - type: textarea
     id: sources
     attributes:
       label: Sources publiques
-      description: Un lien par ligne (rapport annuel, registre, communiqué, mentions légales, presse fiable). Obligatoire.
+      description: >-
+        Un lien par ligne : les documents qui prouvent ce que vous affirmez (rapport annuel, registre,
+        communiqué, mentions légales, presse fiable). Obligatoire. Ce n'est pas la même chose que le lien
+        de redirection ci-dessus : les sources servent à la relecture, le lien de redirection est celui
+        que verront les internautes.
     validations:
       required: true
   - type: textarea

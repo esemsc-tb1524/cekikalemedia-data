@@ -11,11 +11,19 @@ Une fiche sans `source_url` est refusée. Sources acceptées :
 
 Non acceptés : rumeurs, réseaux sociaux, forums, affirmations sans lien, opinions sur la ligne éditoriale. La base dit **qui possède**, pas ce qu'il faut en penser.
 
+## Deux types de liens, à ne pas confondre
+
+- **`source_url` (obligatoire)** : les documents qui **prouvent** l'affirmation. Ils servent à la relecture.
+- **`link_url` (recommandé)** : la page vers laquelle l'extension envoie l'internaute quand il clique sur « cliquez ici » dans la bannière. Privilégiez un lien dont la fiabilité n'est pas contestable :
+  - la page **Wikipédia** du média ou de son propriétaire ;
+  - la page « qui sommes-nous » ou les **mentions légales du média lui-même**.
+  Évitez les blogs, réseaux sociaux, articles d'opinion et sites partisans. Un lien douteux ou instable peut être remplacé à la relecture.
+
 ## Option 1 : sans Git
 
 Ouvrez une [issue](../../issues/new/choose) :
-- **Ajouter un média** : domaine, propriétaire, sources ;
-- **Signaler une erreur ou un changement** : domaine, ce qui est faux, sources.
+- **Ajouter un média** : domaine, propriétaire, lien de redirection, sources ;
+- **Signaler une erreur ou un changement** : domaine, ce qui est faux, sources, et éventuellement un meilleur lien de redirection.
 
 Une personne du projet la transforme en modification du fichier.
 
