@@ -1,0 +1,46 @@
+name: Publish to Supabase
+
+# Runs only after a change has been reviewed and merged to main (or by hand).
+# Secrets are never exposed to pull requests from forks.
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/media.csv
+      - scripts/sync_supabase.py
+      - scripts/validate.py
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only print what would change"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate
+        run: python3 scripts/validate.py
+      - name: Sync
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 scripts/sync_supabase.py --dry-run
+          else
+            python3 scripts/sync_supabase.py
+          fi

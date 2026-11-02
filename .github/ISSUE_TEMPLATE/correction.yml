@@ -1,0 +1,34 @@
+name: Signaler une erreur ou un changement
+description: Une fiche est fausse, périmée, ou le média a changé de propriétaire.
+title: "Correction : "
+labels: ["correction"]
+body:
+  - type: input
+    id: domain
+    attributes:
+      label: Nom de domaine concerné
+      description: Exemple, lemonde.fr
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Ce qui est incorrect ou a changé
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources publiques
+      description: Un lien par ligne. Une correction sans source ne pourra pas être appliquée.
+    validations:
+      required: true
+  - type: dropdown
+    id: relation
+    attributes:
+      label: Votre lien avec ce média
+      description: Facultatif, mais utile à la relecture. Une demande émanant du média ou de son propriétaire est traitée de la même manière, avec les mêmes exigences de source.
+      options:
+        - Aucun, je suis lecteur ou lectrice
+        - Je travaille pour ce média ou son propriétaire
+        - Autre

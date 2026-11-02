@@ -1,0 +1,38 @@
+name: Ajouter un média
+description: Un média n'est pas dans la base ? Proposez-le (une source publique est obligatoire).
+title: "Ajouter : "
+labels: ["nouveau média"]
+body:
+  - type: input
+    id: domain
+    attributes:
+      label: Nom de domaine
+      description: Uniquement le nom d'hôte, en minuscules, sans https:// ni chemin. Exemple, lemonde.fr
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Propriétaire (ou groupe)
+      description: Qui détient ce média ? Si c'est indirect, indiquez la chaîne (média, société, actionnaire).
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources publiques
+      description: Un lien par ligne (rapport annuel, registre, communiqué, mentions légales, presse fiable). Obligatoire.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Précisions
+      description: Cession en cours, part du capital, incertitude… Tout ce qui aide la relecture.
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Vérifications
+      options:
+        - label: Les informations ci-dessus sont documentées par les sources indiquées.
+          required: true
