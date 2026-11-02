@@ -1,0 +1,4 @@
+# Files that run with the Supabase service-role key (or define who can approve) always need an owner's review.
+/.github/   @esemsc-tb1524
+/scripts/   @esemsc-tb1524
+/tests/     @esemsc-tb1524
