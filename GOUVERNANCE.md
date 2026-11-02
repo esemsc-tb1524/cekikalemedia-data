@@ -35,6 +35,19 @@ Action réservée à l'administrateur du dépôt.
 4. **Premier essai** : onglet Actions → « Publish to Supabase » → *Run workflow* avec `dry_run` activé. Le journal liste les lignes qui seraient désactivées. Vérifiez, puis relancez sans `dry_run`, ou laissez la prochaine fusion le faire.
 5. **Fork et secrets** : GitHub n'expose pas les secrets aux *pull requests* venant de forks, c'est voulu : la publication ne se déclenche qu'après fusion dans `main`.
 
+## Mise à jour automatique du site web
+
+Après chaque publication réussie, le workflow prévient le dépôt du site (`tim-boudot/cekikalemedia_website`), qui régénère ses bulles et son quiz depuis `data/media.csv` à ce commit précis puis se redéploie. Le site se reconstruit aussi seul chaque jour, au cas où une notification serait perdue.
+
+Mise en place (administrateur) :
+
+1. Sur GitHub, créez un **jeton d'accès personnel à portée limitée** (Settings → Developer settings → Personal access tokens → Fine-grained tokens), avec comme propriétaire le compte qui possède le dépôt du site :
+   - *Repository access* : uniquement `cekikalemedia_website` ;
+   - *Permissions* : **Contents : Read and write** (nécessaire pour envoyer l'événement) ;
+   - une date d'expiration (par exemple un an), à renouveler.
+2. Dans ce dépôt-ci, ajoutez-le comme secret `WEBSITE_DISPATCH_TOKEN` (Settings → Secrets and variables → Actions).
+3. Sans ce secret, tout fonctionne quand même : seule la mise à jour du site attend alors la reconstruction quotidienne.
+
 ## Garde-fous de la publication
 
 - Le fichier est validé avant d'être envoyé ; un fichier invalide n'est jamais publié.

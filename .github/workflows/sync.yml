@@ -44,3 +44,22 @@ jobs:
           else
             python3 scripts/sync_supabase.py
           fi
+      - name: Notify the website
+        # After a real publish only. A failure here must not mark the publish as failed:
+        # the website also rebuilds by itself every day.
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run == false)
+        continue-on-error: true
+        env:
+          TOKEN: ${{ secrets.WEBSITE_DISPATCH_TOKEN }}
+          SHA: ${{ github.sha }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "WEBSITE_DISPATCH_TOKEN is not set; skipping. The website's daily rebuild will pick the change up."
+            exit 0
+          fi
+          curl --fail-with-body -sS -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/tim-boudot/cekikalemedia_website/dispatches \
+            -d "{\"event_type\":\"data-updated\",\"client_payload\":{\"sha\":\"$SHA\"}}"
+          echo "Website notified for $SHA"
