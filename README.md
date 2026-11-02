@@ -14,7 +14,7 @@ Un seul fichier : [`data/media.csv`](data/media.csv), une ligne par nom de domai
 | `information` | qui possède le média, tel qu'affiché dans la bannière de l'extension |
 | `include_subdomains` | `TRUE` si les sous-domaines (`www.`, `abonnes.`…) sont couverts |
 | `active` | `TRUE` pour que la fiche soit publiée ; `FALSE` pour la retirer sans la supprimer |
-| `link_url` | lien « pour en savoir plus » (facultatif, https) |
+| `link_url` | lien « pour en savoir plus » ouvert depuis la bannière (https) : de préférence Wikipédia ou le site du média ; voir [CONTRIBUTING.md](CONTRIBUTING.md#deux-types-de-liens-à-ne-pas-confondre) |
 | `source_url` | **obligatoire** : une ou plusieurs sources publiques, `https://…`, séparées par ` | ` |
 
 Le fichier est trié par domaine, en UTF-8, avec des fins de ligne LF. `python3 scripts/validate.py --fix` le remet en forme.

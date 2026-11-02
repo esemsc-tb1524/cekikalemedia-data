@@ -16,6 +16,15 @@ body:
       label: Ce qui est incorrect ou a changé
     validations:
       required: true
+  - type: input
+    id: link_url
+    attributes:
+      label: Nouveau lien de redirection (facultatif)
+      description: >-
+        Si le lien « pour en savoir plus » de la bannière est cassé ou inadapté, proposez-en un autre.
+        Privilégiez la page Wikipédia du média ou de son propriétaire, ou la page « qui sommes-nous » /
+        mentions légales du média lui-même. Évitez les blogs, réseaux sociaux, articles d'opinion ou sites partisans.
+      placeholder: "https://fr.wikipedia.org/wiki/…"
   - type: textarea
     id: sources
     attributes:
