@@ -8,14 +8,20 @@ Base de données publique recensant la possession des médias. Elle alimente l'e
 
 Un seul fichier : [`data/media.csv`](data/media.csv), une ligne par nom de domaine.
 
-| Colonne | Contenu |
-|---|---|
-| `domain` | nom d'hôte en minuscules, sans `https://` ni chemin (`lemonde.fr`) |
-| `information` | qui possède le média, tel qu'affiché dans la bannière de l'extension |
-| `include_subdomains` | `TRUE` si les sous-domaines (`www.`, `abonnes.`…) sont couverts |
-| `active` | `TRUE` pour que la fiche soit publiée ; `FALSE` pour la retirer sans la supprimer |
-| `link_url` | lien « pour en savoir plus » ouvert depuis la bannière (https) : de préférence Wikipédia ou le site du média ; voir [CONTRIBUTING.md](CONTRIBUTING.md#deux-types-de-liens-à-ne-pas-confondre) |
-| `source_url` | **obligatoire** : une ou plusieurs sources publiques, `https://…`, séparées par ` | ` |
+| Colonne | Contenu | Exemple |
+|---|---|---|
+| `domain` | nom d'hôte en minuscules, sans `https://` ni chemin | `lefigaro.fr` |
+| `information` | qui possède le média, tel qu'affiché dans la bannière de l'extension | `Famille Dassault (Groupe Figaro / CCM Benchmark)` |
+| `include_subdomains` | `TRUE` si les sous-domaines (`www.`, `abonnes.`…) sont couverts | `TRUE` |
+| `active` | `TRUE` pour que la fiche soit publiée ; `FALSE` pour la retirer sans la supprimer | `TRUE` |
+| `link_url` | lien « pour en savoir plus » ouvert depuis la bannière (https) : de préférence Wikipédia ou le site du média ; voir [CONTRIBUTING.md](CONTRIBUTING.md#deux-types-de-liens-à-ne-pas-confondre) | `https://fr.wikipedia.org/wiki/Famille_Dassault` |
+| `source_url` | **obligatoire** : une ou plusieurs sources publiques (`https://…`) ; s'il y en a plusieurs, voir ci-dessous | `https://dassault.fr/filiale/groupe-figaro` |
+
+**Plusieurs sources dans `source_url`** : écrivez-les les unes à la suite des autres, séparées par une barre verticale (le caractère `|`) entourée d'un espace de chaque côté :
+
+```
+https://exemple.org/rapport-annuel | https://exemple.org/mentions-legales
+```
 
 Le fichier est trié par domaine, en UTF-8, avec des fins de ligne LF. `python3 scripts/validate.py --fix` le remet en forme.
 
