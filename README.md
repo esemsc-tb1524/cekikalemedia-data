@@ -41,6 +41,8 @@ pull request ──▶ validation automatique ──▶ relecture ──▶ fusi
                                        GitHub Action « Publish to Supabase »
                                                                ▼
                          Supabase (lecture publique) ──▶ data.cekikalemedia.fr ──▶ extension
+                                                               │
+                                          notification ────────▶ site web : régénère ses données et se redéploie
 ```
 
 Rien n'est modifié à la main dans Supabase : la base publiée est une copie de ce dépôt. Une fiche retirée du CSV est désactivée (`active = false`), jamais supprimée.
